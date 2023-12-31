@@ -1,0 +1,62 @@
+export ETH_RPC_URL=
+export ETHERSCAN_API_KEY=
+
+case $chain_name in
+"anvil")
+	export ETH_RPC_URL=
+
+	export ac0=
+	export pk0=
+	;;
+
+"ethereum")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"arbitrum")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"arbitrum-nova")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"optimism")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"polygon")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"bsc")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"avalanche")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+"gnosis")
+	export ETH_RPC_URL=
+	export ETHERSCAN_API_KEY=
+	;;
+
+	# Testnets
+"sepolia")
+	export ETH_RPC_URL=
+	;;
+"arbitrum-sepolia")
+	export ETH_RPC_URL=
+	;;
+"polygon-mumbai")
+	export ETH_RPC_URL=
+	;;
+"bsc-test")
+	export ETH_RPC_URL=
+	;;
+"avalanche-fuji")
+	export ETH_RPC_URL=
+	;;
+*) ;;
+esac

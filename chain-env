@@ -1,0 +1,104 @@
+#!/bin/bash
+
+##############################
+#      BLOCK EXPLORERS       #
+##############################
+
+ETHEREUM_BLOCK_EXPLORER=https://etherscan.io
+ARBITRUM_BLOCK_EXPLORER=https://arbiscan.io
+ARBITRUM_NOVA_BLOCK_EXPLORER=https://nova.arbiscan.io
+OPTIMISM_BLOCK_EXPLORER=https://optimistic.etherscan.io
+POLYGON_BLOCK_EXPLORER=https://polygonscan.com
+BSC_BLOCK_EXPLORER=https://bscscan.com
+AVALANCHE_BLOCK_EXPLORER=https://snowtrace.io
+GNOSIS_BLOCK_EXPLORER=https://gnosisscan.io
+
+# Testnets
+SEPOLIA_BLOCK_EXPLORER=https://sepolia.etherscan.io
+ARBITRUM_SEPOLIA_BLOCK_EXPLORER=https://sepolia.arbiscan.io
+MUMBAI_BLOCK_EXPLORER=https://mumbai.polygonscan.com
+BSC_TEST_BLOCK_EXPLORER=https://testnet.bscscan.com
+FUJI_BLOCK_EXPLORER=https://testnet.snowtrace.io
+
+##############################
+#         FUNCTIONS          #
+##############################
+
+chain() {
+	chain_name="${1:-ethereum}"
+
+	# Source only required creds, and only when using "chain"
+	source "$(dirname "${BASH_SOURCE[0]}")/chain-creds.sh"
+
+	case $chain_name in
+	"anvil")
+		export BLOCK_EXPLORER=
+		;;
+
+	"ethereum")
+		export CHAIN=1
+		export BLOCK_EXPLORER=$ETHEREUM_BLOCK_EXPLORER
+		;;
+	"arbitrum")
+		export CHAIN=42161
+		export BLOCK_EXPLORER=$ARBITRUM_BLOCK_EXPLORER
+		;;
+	"arbitrum-nova")
+		export CHAIN=42170
+		export BLOCK_EXPLORER=$ARBITRUM_NOVA_BLOCK_EXPLORER
+		;;
+	"optimism")
+		export CHAIN=10
+		export BLOCK_EXPLORER=$OPTIMISM_BLOCK_EXPLORER
+		;;
+	"polygon")
+		export CHAIN=137
+		export BLOCK_EXPLORER=$POLYGON_BLOCK_EXPLORER
+		;;
+	"bsc")
+		export CHAIN=56
+		export BLOCK_EXPLORER=$BSC_BLOCK_EXPLORER
+		;;
+	"avalanche")
+		export CHAIN=56
+		export BLOCK_EXPLORER=$AVALANCHE_BLOCK_EXPLORER
+		;;
+	"gnosis")
+		export CHAIN=100
+		export BLOCK_EXPLORER=$GNOSIS_BLOCK_EXPLORER
+		;;
+
+		# Testnets
+	"sepolia")
+		export CHAIN=11155111
+		export BLOCK_EXPLORER=$SEPOLIA_BLOCK_EXPLORER
+		;;
+	"arbitrum-sepolia")
+		export CHAIN=421614
+		export BLOCK_EXPLORER=$ARBITRUM_SEPOLIA_BLOCK_EXPLORER
+		;;
+	"polygon-mumbai")
+		export CHAIN=80001
+		export BLOCK_EXPLORER=$MUMBAI_BLOCK_EXPLORER
+		;;
+	"bsc-test")
+		export CHAIN=97
+		export BLOCK_EXPLORER=$BSC_TEST_BLOCK_EXPLORER
+		;;
+	"avalanche-fuji")
+		export CHAIN=43113
+		export BLOCK_EXPLORER=$FUJI_BLOCK_EXPLORER
+		;;
+
+	*) ;;
+	esac
+
+	chain_name_status="[$chain_name]"
+}
+
+export PS1='\[\033[38;5;75m\]$chain_name_status\[\033[0m\]'$PS1
+
+##############################
+#         CONSTANTS          #
+##############################
+
